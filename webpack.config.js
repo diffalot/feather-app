@@ -3,7 +3,7 @@ var getConfig = require('hjs-webpack')
 var toHtml = require('vdom-to-html')
 var app = require('./src/views/app').default
 
-module.exports = getConfig({
+var config = getConfig({
   in: 'src/main.js',
   out: 'public',
   clearBeforeBuild: true,
@@ -18,3 +18,12 @@ module.exports = getConfig({
     }
   }
 })
+
+config.module.loaders = config.module.loaders
+
+config.postcss = [
+  require('postcss-cssnext'),
+  require('autoprefixer')
+]
+
+module.exports = config
